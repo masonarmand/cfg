@@ -8,7 +8,14 @@ filetype off
 
 call plug#begin()
     Plug 'rebelot/kanagawa.nvim'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'dense-analysis/ale'
+    Plug 'lervag/vimtex'
 call plug#end()
+
+
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
