@@ -8,9 +8,13 @@ filetype off
 
 call plug#begin()
     Plug 'rebelot/kanagawa.nvim'
+    Plug 'chriskempson/base16-vim'
+    Plug 'Jorengarenar/vim-darkness'
+    Plug 'jaredgorski/Mies.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dense-analysis/ale'
     Plug 'lervag/vimtex'
+    Plug 'ntk148v/komau.vim'
 call plug#end()
 
 
@@ -45,19 +49,23 @@ set lazyredraw
 set magic
 set showmatch
 set mat=2
-set foldcolumn=1
 set wildmenu
 set completeopt-=preview
+set wildignore=*.o,*~,*.pyc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLORS AND THEMES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme kanagawa
+" set termguicolors
+" colorscheme base16-grayscale-light
+set background=light
+" colorscheme komau
+colorscheme mies
+
 
 syntax enable
 set number
 set regexpengine=0
-set background=dark
 set encoding=utf8
 set cursorline
 
@@ -67,10 +75,11 @@ set cursorline
 set nobackup
 set nowb
 set noswapfile
+set mouse=
 
 " highlight text that is over 100 characters wide
-highlight ColorColumn ctermbg=233
-execute "set colorcolumn=" . join(range(101,335), ',')
+" highlight ColorColumn ctermbg=233
+" execute 'set colorcolumn=' . join(range(101,335), ',')
 
 " Status Line
 set laststatus=2
@@ -92,10 +101,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set expandtab
 set smarttab
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=8
+set tabstop=8
 set lbr
-set tw=100 " Line break on 100 characters
+" set tw=100 " Line break on 100 characters
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
