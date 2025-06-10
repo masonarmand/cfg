@@ -1,14 +1,3 @@
-set nocompatible
-filetype off
-
-highlight slideFuncOuter guifg=blue ctermfg=blue
-highlight slideFuncInner guifg=blue ctermfg=red
-highlight Number guifg=red ctermfg=red
-highlight String guifg=green ctermfg=green
-highlight slideEndStart guifg=blue ctermfg=blue
-highlight slideEndIndented guifg=red ctermfg=red
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -41,17 +30,19 @@ set mat=2
 set foldcolumn=1
 set wildmenu
 set completeopt-=preview
+set titlestring=%t
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLORS AND THEMES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme onehalflight
+" colorscheme onehalflight
 set background=light
+colorscheme mies
 syntax enable
 set number
 set regexpengine=0
 set encoding=utf8
-set cursorline
+" set cursorline
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC
@@ -89,7 +80,7 @@ set si "Smart indent
 set wrap "Wrap lines
 
 " Set tabwidth to 2 when editing HTML and css files
-autocmd BufRead,BufNewFile *.htm,*.html,*.css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufRead,BufNewFile *.htm,*.html,*.css,*.md,*.sh setlocal tabstop=2 shiftwidth=2 softtabstop=2
 " Set tabwidth to 4 when editing rust files
 autocmd BufRead,BufNewFile *.rs, *.slide setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
@@ -125,12 +116,16 @@ map <leader>te :tabedit <C-r>=escape(expand("%:p:h"), " ")<cr>/
 
 " Delete trailing white space on save
 fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
+    " Check if the current buffer's filetype is markdown
+    if &filetype != 'markdown'
+        let save_cursor = getpos(".")
+        let old_query = getreg('/')
+        silent! %s/\s\+$//e
+        call setpos('.', save_cursor)
+        call setreg('/', old_query)
+    endif
 endfun
+
 
 if has("autocmd")
     autocmd BufWritePre * :call CleanExtraSpaces()
