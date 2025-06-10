@@ -4,9 +4,6 @@
 let mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
-" :Ws - saves the file as sudo
-command! Ws execute ':w !sudo tee % > /dev/null' | edit!
-command! Wa echo " Dummy command so that :W doesnt activate the :Ws command
 filetype plugin indent on
 set history=500
 set autoread
