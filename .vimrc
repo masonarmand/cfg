@@ -7,7 +7,7 @@ set history=500
 set autoread
 
 autocmd FocusGained,BufEnter * checktime
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | normal! g'" | endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 autocmd BufWritePre * call CleanExtraSpaces()
 
 let g:netrw_banner = 0
@@ -45,7 +45,7 @@ autocmd FileType vim,html,css,markdown,sh setlocal tabstop=2 shiftwidth=2 softta
 autocmd FileType rust setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
 nnoremap <Home> ^
-inoremap <Home> <Esc>^i
+inoremap <Home> <C-o>^
 
 " preserve yanked text when pasting over selection
 vnoremap p "_dP
