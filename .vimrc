@@ -19,7 +19,6 @@ set smartcase
 set hlsearch
 set incsearch
 set lazyredraw
-set showmatch
 set wildmenu
 set scrolloff=7
 
