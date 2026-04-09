@@ -43,6 +43,7 @@ set wrap
 
 autocmd FileType vim,html,css,markdown,sh setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType rust setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType go setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
 
 nnoremap <Home> ^
 inoremap <Home> <C-o>^
