@@ -35,14 +35,22 @@ set noswapfile
 set expandtab
 set shiftwidth=8
 set tabstop=8
+set softtabstop=8
 set linebreak
 set autoindent
 set smartindent
 set wrap
 
-autocmd FileType vim,html,css,markdown,sh setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType rust setlocal tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType go setlocal tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
+" File specific indent settings
+let s:indent_settings = [
+    \ [['c'], 8, 0],
+    \ [['cpp'], 4, 0],
+    \ [['make'], 8, 1],
+    \ [['rust'], 4, 0],
+    \ [['go'], 4, 1],
+    \ [['vim', 'html', 'css', 'sh'], 2, 0],
+\ ]
+autocmd FileType * call s:ApplyIndent()
 
 nnoremap <Home> ^
 inoremap <Home> <C-o>^
@@ -70,4 +78,16 @@ function! CleanExtraSpaces()
     call setpos('.', save_cursor)
     call setreg('/', old_search)
   endif
+endfunction
+
+function! s:ApplyIndent()
+  for [filetypes, size, use_tabs] in s:indent_settings
+    if index(filetypes, &filetype) >= 0
+      let &l:tabstop     = size
+      let &l:shiftwidth  = size
+      let &l:softtabstop = size
+      let &l:expandtab   = !use_tabs
+      return
+    endif
+  endfor
 endfunction
