@@ -43,8 +43,7 @@ set wrap
 
 " File specific indent settings
 let s:indent_settings = [
-    \ [['c'], 8, 0],
-    \ [['cpp'], 4, 0],
+    \ [['c', 'cpp'], 8, 0],
     \ [['make'], 8, 1],
     \ [['rust'], 4, 0],
     \ [['go'], 4, 1],
